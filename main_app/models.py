@@ -19,7 +19,6 @@ class Cat(models.Model):
     def get_absolute_url(self):
     # Use the 'reverse' function to dynamically find the URL for viewing this cat's details
         return reverse('cat-detail', kwargs={'cat_id': self.id})
-    
 
 class Feeding(models.Model):
     date = models.DateField('Feeding date')
@@ -40,3 +39,14 @@ class Feeding(models.Model):
     # Define the default order of feedings
     class Meta:
         ordering = ['-date']  # This line makes the newest feedings appear first    
+
+
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('toy-detail', kwargs={'pk': self.id})
